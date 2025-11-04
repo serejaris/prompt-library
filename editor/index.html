@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактор Промптов для Вайбкодеров</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Markdown parser -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- Highlight.js for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1><i class="fas fa-code"></i> Промпты</h1>
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Поиск промптов...">
+                </div>
+            </div>
+
+            <div class="categories">
+                <!-- Categories will be populated by JavaScript -->
+            </div>
+
+            <div class="sidebar-footer">
+                <button id="addPromptBtn" class="btn-primary">
+                    <i class="fas fa-plus"></i> Новый промпт
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="toolbar">
+                <div class="toolbar-left">
+                    <h2 id="promptTitle">Выберите промпт</h2>
+                    <span id="promptCategory" class="category-badge"></span>
+                </div>
+                <div class="toolbar-right">
+                    <button id="viewModeBtn" class="btn-icon active" title="Режим просмотра">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                    <button id="editModeBtn" class="btn-icon" title="Режим редактирования">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button id="splitModeBtn" class="btn-icon" title="Разделенный режим">
+                        <i class="fas fa-columns"></i>
+                    </button>
+                    <button id="copyBtn" class="btn-icon" title="Копировать промпт">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                    <button id="exportBtn" class="btn-icon" title="Экспорт">
+                        <i class="fas fa-download"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="content-area">
+                <!-- View Mode -->
+                <div id="viewMode" class="view-container">
+                    <div id="markdownPreview" class="markdown-body">
+                        <div class="empty-state">
+                            <i class="fas fa-rocket fa-3x"></i>
+                            <h3>Добро пожаловать в редактор промптов!</h3>
+                            <p>Выберите промпт из списка слева или создайте новый</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Edit Mode -->
+                <div id="editMode" class="edit-container" style="display: none;">
+                    <textarea id="markdownEditor" placeholder="Введите markdown..."></textarea>
+                </div>
+
+                <!-- Split Mode -->
+                <div id="splitMode" class="split-container" style="display: none;">
+                    <div class="split-pane">
+                        <div class="pane-header">
+                            <i class="fas fa-edit"></i> Редактор
+                        </div>
+                        <textarea id="splitEditor" placeholder="Введите markdown..."></textarea>
+                    </div>
+                    <div class="split-divider"></div>
+                    <div class="split-pane">
+                        <div class="pane-header">
+                            <i class="fas fa-eye"></i> Предпросмотр
+                        </div>
+                        <div id="splitPreview" class="markdown-body"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prompt Extractor Section -->
+            <div id="promptExtractor" class="prompt-extractor" style="display: none;">
+                <div class="extractor-header">
+                    <h3><i class="fas fa-magic"></i> Извлечь промпт</h3>
+                    <button id="closeExtractor" class="btn-icon">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="extractor-content">
+                    <div id="extractedPrompts" class="extracted-prompts">
+                        <!-- Extracted prompts will appear here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Скопировано в буфер обмена!</span>
+    </div>
+
+    <!-- Modal for New Prompt -->
+    <div id="newPromptModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Создать новый промпт</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="promptName">Название промпта</label>
+                    <input type="text" id="promptName" placeholder="Например: Code Review Helper">
+                </div>
+                <div class="form-group">
+                    <label for="promptCategorySelect">Категория</label>
+                    <select id="promptCategorySelect">
+                        <option value="core">Core (Основные)</option>
+                        <option value="testing">Testing (Тестирование)</option>
+                        <option value="performance">Performance (Оптимизация)</option>
+                        <option value="documentation">Documentation (Документация)</option>
+                        <option value="ui">UI (Интерфейсы)</option>
+                        <option value="specialized">Specialized (Специализированные)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="promptDescription">Краткое описание</label>
+                    <textarea id="promptDescription" rows="3" placeholder="Что делает этот промпт?"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="cancelNewPrompt" class="btn-secondary">Отмена</button>
+                <button id="createNewPrompt" class="btn-primary">Создать</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
