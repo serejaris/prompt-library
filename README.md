@@ -79,11 +79,11 @@ cd editor && python -m http.server 8000
 ### Запуск просмотрщика
 
 ```bash
-# С помощью Python
-python3 serve.py
+# С помощью Node.js (рекомендуется)
+npm start
 
-# Или с помощью Node.js
-npx http-server -p 8000
+# Или напрямую
+node server.js
 
 # Откройте http://localhost:8000
 ```

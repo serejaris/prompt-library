@@ -1,0 +1,18 @@
+{
+  "name": "prompt-library",
+  "version": "1.0.0",
+  "description": "Библиотека промптов для вайбкодеров",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "prompts",
+    "ai",
+    "vibe-coding",
+    "library"
+  ],
+  "author": "",
+  "license": "MIT"
+}
