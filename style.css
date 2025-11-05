@@ -1,0 +1,338 @@
+/* Минималистичные стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-hover: #f0f0f0;
+    --text-primary: #1a1a1a;
+    --text-secondary: #666666;
+    --border-color: #e0e0e0;
+    --accent-color: #0066cc;
+    --accent-hover: #0052a3;
+    --code-bg: #f5f5f5;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background: var(--bg-secondary);
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+/* Search Bar */
+.search-bar {
+    margin-bottom: 2rem;
+}
+
+#searchInput {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-primary);
+    transition: border-color 0.2s;
+}
+
+#searchInput:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+/* Content Layout */
+.content {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 2rem;
+    background: var(--bg-primary);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Sidebar */
+.sidebar {
+    border-right: 1px solid var(--border-color);
+    padding-right: 1.5rem;
+}
+
+.categories {
+    margin-bottom: 1.5rem;
+}
+
+.category-btn {
+    display: block;
+    width: 100%;
+    padding: 0.6rem 1rem;
+    margin-bottom: 0.5rem;
+    text-align: left;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 0.95rem;
+}
+
+.category-btn:hover {
+    background: var(--bg-hover);
+}
+
+.category-btn.active {
+    background: var(--accent-color);
+    color: white;
+}
+
+/* Prompts List */
+.prompts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.prompt-item {
+    padding: 0.75rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    border: 1px solid transparent;
+}
+
+.prompt-item:hover {
+    background: var(--bg-hover);
+}
+
+.prompt-item.active {
+    background: var(--bg-secondary);
+    border-color: var(--accent-color);
+}
+
+.prompt-item h3 {
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    color: var(--text-primary);
+}
+
+.prompt-item .category-tag {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Main Content */
+.main-content {
+    padding: 0 1rem;
+    overflow-y: auto;
+    max-height: calc(100vh - 300px);
+}
+
+.prompt-display {
+    line-height: 1.8;
+}
+
+.welcome {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-secondary);
+}
+
+.welcome h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.prompt-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.prompt-header h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.prompt-meta {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+.prompt-category-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.copy-btn {
+    padding: 0.5rem 1rem;
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+}
+
+.copy-btn:hover {
+    background: var(--accent-hover);
+}
+
+.copy-btn.copied {
+    background: #28a745;
+}
+
+/* Markdown Content */
+.prompt-content {
+    font-size: 1rem;
+}
+
+.prompt-content h1,
+.prompt-content h2,
+.prompt-content h3 {
+    margin: 1.5rem 0 1rem;
+    color: var(--text-primary);
+}
+
+.prompt-content h1 {
+    font-size: 1.8rem;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+
+.prompt-content h2 {
+    font-size: 1.5rem;
+}
+
+.prompt-content h3 {
+    font-size: 1.2rem;
+}
+
+.prompt-content p {
+    margin-bottom: 1rem;
+}
+
+.prompt-content ul,
+.prompt-content ol {
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+.prompt-content li {
+    margin-bottom: 0.5rem;
+}
+
+.prompt-content code {
+    background: var(--code-bg);
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-family: 'Monaco', 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
+.prompt-content pre {
+    background: var(--code-bg);
+    padding: 1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 1rem 0;
+}
+
+.prompt-content pre code {
+    background: none;
+    padding: 0;
+}
+
+.prompt-content blockquote {
+    border-left: 3px solid var(--accent-color);
+    padding-left: 1rem;
+    margin: 1rem 0;
+    color: var(--text-secondary);
+}
+
+.prompt-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+.prompt-content table th,
+.prompt-content table td {
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    text-align: left;
+}
+
+.prompt-content table th {
+    background: var(--bg-secondary);
+    font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .content {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        padding-right: 0;
+        padding-bottom: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+}
+
+/* Hidden class */
+.hidden {
+    display: none !important;
+}
