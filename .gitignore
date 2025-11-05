@@ -28,6 +28,11 @@ dist/
 build/
 *.tgz
 
+# Next.js
+.next/
+out/
+next-env.d.ts
+
 # Temp
 tmp/
 temp/
