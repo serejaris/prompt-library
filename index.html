@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Библиотека Промптов</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Библиотека Промптов</h1>
+            <p class="subtitle">Коллекция промптов для разработчиков</p>
+        </header>
+
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Поиск промптов...">
+        </div>
+
+        <div class="content">
+            <aside class="sidebar">
+                <div class="categories">
+                    <button class="category-btn active" data-category="all">Все промпты</button>
+                    <button class="category-btn" data-category="core">Core</button>
+                    <button class="category-btn" data-category="documentation">Documentation</button>
+                    <button class="category-btn" data-category="performance">Performance</button>
+                    <button class="category-btn" data-category="specialized">Specialized</button>
+                    <button class="category-btn" data-category="testing">Testing</button>
+                    <button class="category-btn" data-category="ui">UI</button>
+                </div>
+
+                <div class="prompts-list" id="promptsList">
+                    <!-- Prompts will be loaded here -->
+                </div>
+            </aside>
+
+            <main class="main-content">
+                <div class="prompt-display" id="promptDisplay">
+                    <div class="welcome">
+                        <h2>Добро пожаловать</h2>
+                        <p>Выберите промпт из списка слева</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="viewer.js"></script>
+</body>
+</html>
